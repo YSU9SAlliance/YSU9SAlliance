@@ -14,6 +14,21 @@ import { ChatBubbleIcon } from '@/components/icons/ChatBubbleIcon'
 import { EnvelopeIcon } from '@/components/icons/EnvelopeIcon'
 import { UserIcon } from '@/components/icons/UserIcon'
 import { UsersIcon } from '@/components/icons/UsersIcon'
+import { TagIcon } from './icons/TagIcon'
+import { BookIcon } from './icons/BookIcon'
+import { CartIcon } from './icons/CartIcon'
+import { CogIcon } from './icons/CogIcon'
+import { ChevronRightLeftIcon } from './icons/ChevronRightLeftIcon'
+import { MagnifyingGlassIcon } from './icons/MagnifyingGlassIcon'
+import { MapPinIcon } from './icons/MapPinIcon'
+import { PackageIcon } from './icons/PackageIcon'
+import { ShapesIcon } from './icons/ShapesIcon'
+import { SquaresPlusIcon } from './icons/SquaresPlusIcon'
+import { BoltIcon } from './icons/BoltIcon'
+import { DocumentIcon } from './icons/DocumentIcon'
+import { CheckIcon } from './icons/CheckIcon'
+import { ListIcon } from './icons/ListIcon'
+import { PaperAirplaneIcon } from './icons/PaperAirplaneIcon'
 
 interface Resource {
   href: string
@@ -28,11 +43,11 @@ interface Resource {
 
 const resources: Array<Resource> = [
   {
-    href: '/contacts',
-    name: 'Contacts',
+    href: '/fe-index',
+    name: '初识前端',
     description:
-      'Learn about the contact model and how to create, retrieve, update, delete, and list contacts.',
-    icon: UserIcon,
+      '一言蔽之就是写界面的，凡是用户看得到的部分，皆是前端的工作。就比如这个文档站。',
+    icon: ChatBubbleIcon,
     pattern: {
       y: 16,
       squares: [
@@ -42,11 +57,25 @@ const resources: Array<Resource> = [
     },
   },
   {
-    href: '/conversations',
-    name: 'Conversations',
+    href: '/js-index',
+    name: 'JS / TS',
     description:
-      'Learn about the conversation model and how to create, retrieve, update, delete, and list conversations.',
-    icon: ChatBubbleIcon,
+      'JavaScript 与 TypeScript 是前端的核心语言，几近所有的前端知识都围绕其展开。',
+    icon: BookIcon,
+    pattern: {
+      y: 16,
+      squares: [
+        [0, 1],
+        [1, 3],
+      ],
+    },
+  },
+  {
+    href: '/mv*-index',
+    name: 'MV* 框架',
+    description:
+      'MV* 指诸如 Vue2/3、React 这样的框架，它们是当前前端生态的主流框架。',
+    icon: ChevronRightLeftIcon,
     pattern: {
       y: -6,
       squares: [
@@ -56,11 +85,23 @@ const resources: Array<Resource> = [
     },
   },
   {
-    href: '/messages',
-    name: 'Messages',
-    description:
-      'Learn about the message model and how to create, retrieve, update, delete, and list messages.',
-    icon: EnvelopeIcon,
+    href: '/node-index',
+    name: 'Node.js',
+    description: '前端开发者最易上手的 Server 语言，初窥架构的不二之选。',
+    icon: ListIcon,
+    pattern: {
+      y: 16,
+      squares: [
+        [0, 1],
+        [1, 3],
+      ],
+    },
+  },
+  {
+    href: '/design-patten-index',
+    name: '软件设计模式',
+    description: '不论写什么业务，都不会动摇的编程哲学。',
+    icon: ShapesIcon,
     pattern: {
       y: 32,
       squares: [
@@ -70,14 +111,39 @@ const resources: Array<Resource> = [
     },
   },
   {
-    href: '/groups',
-    name: 'Groups',
-    description:
-      'Learn about the group model and how to create, retrieve, update, delete, and list groups.',
-    icon: UsersIcon,
+    href: '/fe-build-index',
+    name: '前端构建工具',
+    description: '将一切前端工程内的文件，编译为 HTML、CSS 与 JS 的工具。',
+    icon: PackageIcon,
     pattern: {
       y: 22,
       squares: [[0, 1]],
+    },
+  },
+  {
+    href: '/fe-plus-index',
+    name: '大前端',
+    description: 'iOS、Android、Windows、MacOS、乃至小程序，都能算作前端',
+    icon: PaperAirplaneIcon,
+    pattern: {
+      y: -6,
+      squares: [
+        [-1, 2],
+        [1, 3],
+      ],
+    },
+  },
+  {
+    href: '/fe-infra-index',
+    name: '前端架构与基建',
+    description: '企业中常见的前端架构与基础设施建设方案。',
+    icon: CogIcon,
+    pattern: {
+      y: 32,
+      squares: [
+        [0, 2],
+        [1, 4],
+      ],
     },
   },
 ]
@@ -174,7 +240,7 @@ export function Resources() {
   return (
     <div className="my-16 xl:max-w-none">
       <Heading level={2} id="resources">
-        Resources
+        前端学习资源
       </Heading>
       <div className="not-prose mt-4 grid grid-cols-1 gap-8 border-t border-zinc-900/5 pt-10 dark:border-white/5 sm:grid-cols-2 xl:grid-cols-4">
         {resources.map((resource) => (

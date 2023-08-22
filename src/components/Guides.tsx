@@ -4,25 +4,23 @@ import { Heading } from '@/components/Heading'
 const guides = [
   {
     href: '/authentication',
-    name: 'Authentication',
-    description: 'Learn how to authenticate your API requests.',
+    name: '讲给大学生',
+    description: '解答一些很多大学生毕业了也回答不了的问题。',
   },
   {
     href: '/pagination',
-    name: 'Pagination',
-    description: 'Understand how to work with paginated responses.',
+    name: 'IT 技能库',
+    description: '工程，设计，管理等，各种互联网办公能用得上的技能',
   },
   {
     href: '/errors',
-    name: 'Errors',
-    description:
-      'Read about the different types of errors returned by the API.',
+    name: 'IT 哲学',
+    description: '群友们的一些感触，一些高度抽象的方法论',
   },
   {
     href: '/webhooks',
-    name: 'Webhooks',
-    description:
-      'Learn how to programmatically configure webhooks for your app.',
+    name: '广亮的闲谈',
+    description: '群主闲来无事随便说说，也许勉强值得一听',
   },
 ]
 
@@ -30,7 +28,7 @@ export function Guides() {
   return (
     <div className="my-16 xl:max-w-none">
       <Heading level={2} id="guides">
-        Guides
+        博客导航
       </Heading>
       <div className="not-prose mt-4 grid grid-cols-1 gap-8 border-t border-zinc-900/5 pt-10 dark:border-white/5 sm:grid-cols-2 xl:grid-cols-4">
         {guides.map((guide) => (
@@ -43,7 +41,7 @@ export function Guides() {
             </p>
             <p className="mt-4">
               <Button href={guide.href} variant="text" arrow="right">
-                Read more
+                查看更多
               </Button>
             </p>
           </div>
