@@ -231,9 +231,9 @@ function NavigationGroup({
 
 export const navigation: Array<NavGroup> = [
   {
-    title: 'Guides',
+    title: '目录',
     links: [
-      { title: 'Introduction', href: '/' },
+      { title: '简介', href: '/' },
       { title: 'Quickstart', href: '/quickstart' },
       { title: 'SDKs', href: '/sdks' },
       { title: 'Authentication', href: '/authentication' },
@@ -243,7 +243,7 @@ export const navigation: Array<NavGroup> = [
     ],
   },
   {
-    title: 'Resources',
+    title: '开发者之路',
     links: [
       { title: 'Contacts', href: '/contacts' },
       { title: 'Conversations', href: '/conversations' },

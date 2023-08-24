@@ -1,5 +1,5 @@
 import { Guides } from '@/components/Guides'
-import { Resources } from '@/components/Resources'
+import { ResourcesFe, ResourcesCommon } from '@/components/Resources'
 import { HeroPattern } from '@/components/HeroPattern'
 
 export const metadata = {
@@ -8,8 +8,8 @@ export const metadata = {
 }
 
 export const sections = [
-  { title: 'JavaScript', id: 'guides' },
-  { title: 'Resources', id: 'resources' },
+  { title: '软件开发通用', id: 'common-resource' },
+  { title: '前端学习资源', id: 'fe-resource' },
 ]
 
 <HeroPattern />
@@ -25,4 +25,6 @@ export const sections = [
 
 <Guides />
 
-<Resources />
+<ResourcesCommon />
+
+<ResourcesFe />
