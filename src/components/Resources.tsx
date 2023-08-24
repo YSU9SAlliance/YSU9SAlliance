@@ -320,7 +320,7 @@ function Resource({ resource }: { resource: Resource }) {
 }
 
 function ResourcesFactory(resources: Resource[], title: string, id: string) {
-  return () => (
+  return (
     <div className="my-16 xl:max-w-none">
       <Heading level={2} id={`${id}-resource`}>
         {title}
@@ -334,9 +334,7 @@ function ResourcesFactory(resources: Resource[], title: string, id: string) {
   )
 }
 
-export const ResourcesFe = ResourcesFactory(resourcesFe, '前端学习资源', 'fe')
-export const ResourcesCommon = ResourcesFactory(
-  resourcesCommon,
-  '软件开发通用',
-  'common',
-)
+export const ResourcesFe = () =>
+  ResourcesFactory(resourcesFe, '前端学习资源', 'fe')
+export const ResourcesCommon = () =>
+  ResourcesFactory(resourcesCommon, '软件开发通用', 'common')
