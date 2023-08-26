@@ -234,8 +234,8 @@ export const navigation: Array<NavGroup> = [
     title: '目录',
     links: [
       { title: '简介', href: '/' },
-      { title: 'Quickstart', href: '/quickstart' },
-      { title: 'SDKs', href: '/sdks' },
+      { title: '软件开发通用', href: '/common' },
+      { title: '前端开发知识', href: '/fe' },
       { title: 'Authentication', href: '/authentication' },
       { title: 'Pagination', href: '/pagination' },
       { title: 'Errors', href: '/errors' },
