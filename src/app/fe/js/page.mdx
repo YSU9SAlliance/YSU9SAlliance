@@ -1,13 +1,123 @@
 export const metadata = {
-  title: 'Protocol SDKs',
+  title: 'JavaScript',
   description:
     'Protocol offers fine-tuned JavaScript, Ruby, PHP, Python, and Go libraries to make your life easier and give you the best experience when consuming the API.',
 }
 
 export const sections = [
-  { title: 'Official libraries', id: 'official-libraries' },
+  { title: '简介', id: 'info' },
+  { title: 'JS 的特点', id: 'feature' },
 ]
 
-# JavaScript
+# JS 与 TS
 
-The recommended way to interact with the Protocol API is by using one of our official SDKs. Today, Protocol offers fine-tuned JavaScript, Ruby, PHP, Python, and Go libraries to make your life easier and give you the best experience when consuming the API. {{ className: 'lead' }}
+JS 与 TS 即 JavaScript 与 TypeScript，是当前前端开发者最常使用的两种语言，但它们实际上可以都看作是 JavaScript。{{ className: 'lead' }}
+
+## 简介 {{id: 'info'}}
+
+JavaScript 是一门 **弱类型**、**动态类型** 的高级语言，容易理解但性能不高，依托于 JavaScript 的高可读性和模块化，它能够快速支持搭建十分复杂的工程。
+
+TypeScript 是基于 JavaScript 构建的 **强类型**、**静态类型** 的高级语言。相对 JavaScript 来说，在 TypeScript 项目中类型提示更多，但类型校验也更严格。
+
+由于 TypeScript 兼具 JavaScript 的易读性和模块化能力，并解决了 JavaScript 在大型项目中类型错误频出的问题，故其目前是多数前端开发人员首选语言。
+
+<Note>
+  要注意，TypeScript 并非一种脱离于 JavaScript
+  的独立语言，绝大多数情况下，TypeScript 都需要编译为 JavaScript
+  再运行，所以在学习其之前，需要先掌握 JavaScript。
+</Note>
+
+---
+
+## JS 的特点 {{ id: 'feature' }}
+
+> - 有人说：任何可以用 JavaScript 来写的应用，最终都将用 JavaScript 来写。
+> - 也有人说：JavaScript 的优点是什么都能做，缺点是你真的会这么做。
+> - 博主说：阿巴，阿巴阿巴......（痴呆状）。
+
+JS 是一种使用便捷，语法简单，性能一般，生态蓬勃的语言，最前端最常使用的语言。 {{ className: 'lead' }}
+
+想要开始写 JS 你甚至不需要下载和搭建任何开发环境，只需要在当前页面中 **按右键**，点击 **检查** 或 **审查元素** 一类的设置，就可以打开浏览器的开发者工具了。 {{ className: 'lead' }}
+
+然后你可以在开发者工具中寻找 **控制台** 或 **Console** 字样，切换至控制台，在控制台里可以直接复制下文提及的代码并运行。 {{ className: 'lead' }}
+
+这恐怕是所有编程语言中，环境配置最简单的了，因为浏览器就是 JS 的原生环境。 {{ className: 'lead' }}
+
+---
+
+<Row>
+  <Col>
+    ## 弱类型 & 动态类型
+
+    > 如果有人问你，JS 里不同类型运算的结果，你就叫他玩蛋去。
+
+    弱类型与动态类型是 JS 被人们诟病最多的一个特性。
+
+    弱类型体现为不同的类型之间可以进行运算，例如数字可以与字符串相乘。
+
+    而动态类型体现于程序运行过程中，同一个变量可以被重复赋值为不同的类型，一个原本是字符串的变量，可能一段时间后就被赋值为了函数。
+
+    Jesus，幸好 TS 没有这种问题。
+
+  </Col>
+  <Col sticky>
+
+    <CodeGroup title="吊诡的弱类型">
+    ```js
+    let a = 2, b = "1"
+    console.log(a + b, a - b) // 21, 1
+    // 别问为什么，研究这个不如玩会儿蛋
+
+    console.log(0 == "") // true
+    console.log(0 === "") // false
+    // === 的校验比 == 严格，一般建议用 ===
+    ```
+    </CodeGroup>
+
+    <CodeGroup title="不靠谱的动态类型">
+    ```js
+    function add(a, b) {
+      return a + b
+    }
+    console.log(add(1, 2)) // 3
+
+    add = "add"
+    console.log(add(1, 2))
+    // Uncaught TypeError: add is not a function
+    ```
+    </CodeGroup>
+
+  </Col>
+</Row>
+---
+<Row>
+  <Col>
+    ### 易懂的语法，清晰的语义
+
+    JS 中不会让开发者直接去操控内存和指针，这对新手来说会很友好，但也可能阻碍新手了解编程语言的底层原理
+
+    JS 基础库提供了很多具有良好语义的工具函数，掌握它们可以写出 **一眼就知道在干什么** 的语法
+
+  </Col>
+  <Col sticky>
+
+    <CodeGroup title="数组的高阶函数">
+    ```js
+    let arr = [1, 4, 3, 2, 5]
+
+    console.log(arr.filter((item) => item >= 3)) // [4, 3, 5]
+    // 数组实例的 filter 函数可以过滤符合条件的元素形成新数组
+
+    console.log(arr.map((item) => item * 3)) // [3, 12, 9, 6, 15]
+    // 数组实例的 map 函数可以返回对所有元素进行统一操作后的新数组
+    // 例如变成 3 倍
+    ```
+    </CodeGroup>
+
+  </Col>
+</Row>
+
+- 良好地支持面向对象与函数式编程等多种编程范式
+- 能够在浏览器中运行，也能借由 Node.js 等框架实现直接在操作系统上运行
+- 与 C++ 等语言相比，JS 有相对宜人的学习曲线，和 Python 相当
+- JS 有最为蓬勃的前端生态

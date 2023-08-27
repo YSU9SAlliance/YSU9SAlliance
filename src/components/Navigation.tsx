@@ -235,17 +235,13 @@ export const navigation: Array<NavGroup> = [
     links: [
       { title: '简介', href: '/' },
       { title: '软件开发通用', href: '/common' },
-      { title: '前端开发知识', href: '/fe' },
-      { title: 'Authentication', href: '/authentication' },
-      { title: 'Pagination', href: '/pagination' },
-      { title: 'Errors', href: '/errors' },
-      { title: 'Webhooks', href: '/webhooks' },
+      { title: '前端开发', href: '/fe' },
     ],
   },
   {
-    title: '开发者之路',
+    title: 'JS / TS',
     links: [
-      { title: 'Contacts', href: '/contacts' },
+      { title: 'JS 与 TS', href: '/fe/js' },
       { title: 'Conversations', href: '/conversations' },
       { title: 'Messages', href: '/messages' },
       { title: 'Groups', href: '/groups' },
