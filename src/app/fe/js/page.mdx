@@ -46,7 +46,7 @@ JS 是一种使用便捷，语法简单，性能一般，生态蓬勃的语言�
 ---
 
 <Row>
-  <Col>
+  <Col sticky>
     ## 弱类型 & 动态类型
 
     > 如果有人问你，JS 里不同类型运算的结果，你就叫他玩蛋去。
@@ -91,12 +91,94 @@ JS 是一种使用便捷，语法简单，性能一般，生态蓬勃的语言�
 </Row>
 ---
 <Row>
-  <Col>
+  <Col sticky>
     ### 易懂的语法，清晰的语义
 
-    JS 中不会让开发者直接去操控内存和指针，这对新手来说会很友好，但也可能阻碍新手了解编程语言的底层原理
+    JS 中不会让开发者直接去操控内存和指针，这对新手来说会很友好，但也可能阻碍新手了解编程语言的底层原理。
 
-    JS 基础库提供了很多具有良好语义的工具函数，掌握它们可以写出 **一眼就知道在干什么** 的语法
+    JS 基础库提供了很多具有良好语义的工具函数，掌握它们可以写出 **一眼就知道在干什么** 的语法。
+
+  </Col>
+  <Col sticky>
+
+    <CodeGroup title="数组的高阶函数">
+    ```js
+    let arr = [1, 4, 3, 2, 5]
+
+    console.log(arr.filter((item) => item >= 3)) // [4, 3, 5]
+    // 数组实例的 filter 函数可以过滤符合条件的元素形成新数组
+
+    console.log(arr.map((item) => item * 3)) // [3, 12, 9, 6, 15]
+    // 数组实例的 map 函数可以返回对所有元素进行统一操作后的新数组
+    // 例如变成 3 倍
+    ```
+    </CodeGroup>
+
+  </Col>
+</Row>
+---
+<Row>
+  <Col sticky>
+    ### 多环境运行
+
+    JS 能够在浏览器运行，也可以通过 Node.js 在操作系统上运行，**JS 的语法总是相对统一的，但是能力取决于它的运行环境** 。
+
+    不同环境中的 JS 语法里相对统一的部分由 **ECMAScript 规范** 约束，这包括了该语言几乎所有涉及到逻辑的部分，所以 JS 使用者可以很 **轻松地掌握在不同环境中运行的 JS** 。
+
+    但是不同环境的 JS 实际上难以算作“同一种语言”，可以认为是语法极为相近的不同语言，学习不同环境的 JS 仍然有许多不重复的部分，例如：
+
+    浏览器环境中的 JS 是一种 **客户端编程语言**，主要包括 **ECMAScript、DOM、BOM** 三部分，其中 DOM 为操纵网页中元素的能力，BOM 为操纵浏览器的能力。
+
+    Node.js 是一种 **服务端编程语言**，除了 ECMAScript 还具备操纵操作系统的能力，例如 **多线程、文件读写、网络通信** 等能力。
+
+  </Col>
+  <Col sticky>
+
+  <CodeGroup title="浏览器中的 JS">
+    ```js
+    // 这个示例会调用 BOM，也就是浏览器的能力
+    // 运行后，浏览器弹出一个写着 'Hello, Node.js.' 的弹窗
+    alert('Hello, JavaScript!');
+    ```
+    </CodeGroup>
+    <CodeGroup title="Node.js 示例，文件名 hello.js">
+    ```js
+    // 这个示例会搭建一个本地服务器，在 http://localhost:3000 开放
+    // 一旦访问，他就会返回 'Hello, Node.js!'
+
+    // Node.js 默认使用 CommonJS 模块系统
+    const http = require('http');
+
+    // 创建一个 HTTP 服务器
+    const server = http.createServer((req, res) => {
+    // 设置响应头
+    res.writeHead(200, {'Content-Type': 'text/plain'});
+
+    // 发送响应内容
+    res.end('Hello, Node.js!');
+    });
+
+    // 监听端口 3000
+    server.listen(3000, 'localhost', () => {
+    console.log('Server is listening on http://localhost:3000');
+    });
+    ```
+    </CodeGroup>
+
+    <CodeGroup title="运行 hello.js，请安装在 Node.js 后在 hello.js 父级目录运行该指令">
+    ```bash
+    node hello.js
+    ```
+    </CodeGroup>
+
+  </Col>
+</Row>
+---
+<Row>
+  <Col>
+    ### 多范式语言
+
+    JS 支持面向对象编程，其底层通过原型链实现，与 Java、C++ 一类面向对象语言的 class
 
   </Col>
   <Col sticky>
