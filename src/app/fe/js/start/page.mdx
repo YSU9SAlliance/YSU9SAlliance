@@ -36,9 +36,12 @@ TypeScript 是基于 JavaScript 构建的 **强类型**、**静态类型** 的�
 
 JS 是一种使用便捷，语法简单，性能一般，生态蓬勃的语言，最前端最常使用的语言。 {{ className: 'lead' }}
 
+<Note>
 想要开始写 JS 你甚至不需要下载和搭建任何开发环境，只需要在当前页面中 **按右键**，点击 **检查** 或 **审查元素** 一类的设置，就可以打开浏览器的开发者工具了。 {{ className: 'lead' }}
 
 然后你可以在开发者工具中寻找 **控制台** 或 **Console** 字样，切换至控制台，在控制台里可以直接复制下文提及的代码并运行。 {{ className: 'lead' }}
+
+</Note>
 
 这恐怕是所有编程语言中，环境配置最简单的了，因为浏览器就是 JS 的原生环境。 {{ className: 'lead' }}
 
@@ -213,7 +216,7 @@ JS 是一种使用便捷，语法简单，性能一般，生态蓬勃的语言�
     }
     // 实例化一个 Rectangle 对象
     const square = new Rectangle(10, 10);
-    console.log(square.area); // 100
+    console.log((square.area())); // 100
     ```
     </CodeGroup>
 
