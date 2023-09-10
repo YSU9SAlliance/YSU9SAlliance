@@ -61,7 +61,7 @@ const resourcesFe: Array<Resource> = [
     },
   },
   {
-    href: '/js-index',
+    href: '/fe/js/start',
     name: 'JS / TS',
     description:
       'JavaScript 与 TypeScript 是前端的核心语言，几近所有的前端知识都围绕其展开。',

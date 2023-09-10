@@ -241,7 +241,7 @@ export const navigation: Array<NavGroup> = [
   {
     title: 'JS / TS',
     links: [
-      { title: 'JS 与 TS', href: '/fe/js' },
+      { title: 'JS 与 TS', href: '/fe/js/start' },
       { title: 'Conversations', href: '/conversations' },
       { title: 'Messages', href: '/messages' },
       { title: 'Groups', href: '/groups' },
