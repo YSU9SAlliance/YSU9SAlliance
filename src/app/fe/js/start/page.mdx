@@ -5,7 +5,8 @@ export const metadata = {
 
 export const sections = [
   { title: '简介', id: 'info' },
-  { title: 'JS 的特点', id: 'feature' },
+  { title: 'JS 的特点', id: 'feature-js' },
+  { title: 'TS 的特点', id: 'feature-ts' },
 ]
 
 # 初识 JS 与 TS
@@ -28,7 +29,7 @@ TypeScript 是基于 JavaScript 构建的 **强类型**、**静态类型** 的�
 
 ---
 
-## JS 的特点 {{ id: 'feature' }}
+## JS 的特点 {{ id: 'feature-js' }}
 
 > - 有人说：任何可以用 JavaScript 来写的应用，最终都将用 JavaScript 来写。
 > - 也有人说：JavaScript 的优点是什么都能做，缺点是你真的会这么做。
@@ -222,3 +223,63 @@ JS 是一种使用便捷，语法简单，性能一般，生态蓬勃的语言�
 
   </Col>
 </Row>
+
+---
+
+<Row>
+  <Col>
+    ### 极为蓬勃的前端生态
+
+    在前后端分离之后，前端普遍通过 **Node.js** 搭建的本地服务器运行与调试，并使用 Node.js 配套的包管理器 **npm** 管理依赖。
+
+    几乎所有你能想到的功能，肯定都有其他人写过并封装成 **npm package**，所以写前端项目大部分时间就像拼积木一样简单。
+
+    对于前端项目来说，搭建也是十分容易的。只需要先去下载并安装 [Node.js](https://nodejs.org)，剩下一切交给 **npm** 就好。
+
+  </Col>
+  <Col sticky>
+    <CodeGroup title="为前端项目安装依赖的指令">
+    ```bash
+    npm i
+    ```
+    </CodeGroup>
+  </Col>
+</Row>
+
+---
+
+## TS 的特点 {{ id: 'feature-ts' }}
+
+TS 是基于 JS 实现的一种语言，TS 对 JS **过于自由** 的部分进行了约束，例如类型系统。{{ className: 'lead' }}
+
+TS 在前端的大型项目内，比 JS 使用起来更加 **靠谱**，所以目前技术氛围比较好的企业，普遍是使用 TS 代替 JS 的。 {{ className: 'lead' }}
+
+由于 TS 其实是 JS 的 **预编译语言**，也就是说 TS 编译后的产物为 JS，故 TS 没有任何超出 JS 能力范围的能力，只是为了让 JS 更好用而对 JS 进行了阉割，所以也称 **TS 是 JS 的超集** {{ className: 'lead' }}
+
+由于学会 JS 之后往往能 **极快速** 掌握 TS，所以一般先学习 JS 然后学习 TS，把 TS 看作是 JS plus 即可
+
+---
+
+<Row>
+  <Col>
+    ### 静态类型与强类型
+
+    在前后端分离之后，前端普遍通过 **Node.js** 搭建的本地服务器运行与调试，并使用 Node.js 配套的包管理器 **npm** 管理依赖。
+
+    几乎所有你能想到的功能，肯定都有其他人写过并封装成 **npm package**，所以写前端项目大部分时间就像拼积木一样简单。
+
+    对于前端项目来说，搭建也是十分容易的。只需要先去下载并安装 [Node.js](https://nodejs.org)，剩下一切交给 **npm** 就好。
+
+  </Col>
+  <Col sticky>
+    <CodeGroup title="TS 的基础类型">
+    ```ts
+    let num: number = 0;
+    let str: string = "0";
+    let theme: "light" | "dark" = "dark";
+    ```
+    </CodeGroup>
+  </Col>
+</Row>
+
+---
