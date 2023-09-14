@@ -1,4 +1,4 @@
-interface NavGroup {
+export interface NavGroup {
   title: string
   links: {
     title: string

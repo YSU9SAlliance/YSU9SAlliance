@@ -13,7 +13,7 @@ import { Tag } from '@/components/Tag'
 import { remToPx } from '@/lib/remToPx'
 
 // 目录表单独拿出来
-import { navigation } from '@/constants'
+import { navigation, NavGroup } from '@/constants'
 
 function useInitialValue<T>(value: T, condition = true) {
   let initialValue = useRef(value).current
