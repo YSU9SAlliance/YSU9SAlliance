@@ -41,12 +41,12 @@ const FeedbackForm = forwardRef<
       className="absolute inset-0 flex items-center justify-center gap-6 md:justify-start"
     >
       <p className="text-sm text-zinc-600 dark:text-zinc-400">
-        Was this page helpful?
+        这篇文章有帮助吗？
       </p>
       <div className="group grid h-8 grid-cols-[1fr,1px,1fr] overflow-hidden rounded-full border border-zinc-900/10 dark:border-white/10">
-        <FeedbackButton data-response="yes">Yes</FeedbackButton>
+        <FeedbackButton data-response="yes">是</FeedbackButton>
         <div className="bg-zinc-900/10 dark:bg-white/10" />
-        <FeedbackButton data-response="no">No</FeedbackButton>
+        <FeedbackButton data-response="no">否</FeedbackButton>
       </div>
     </form>
   )
@@ -61,7 +61,7 @@ const FeedbackThanks = forwardRef<React.ElementRef<'div'>>(
       >
         <div className="flex items-center gap-3 rounded-full bg-indigo-50/50 py-1 pl-1.5 pr-3 text-sm text-indigo-900 ring-1 ring-inset ring-indigo-500/20 dark:bg-indigo-500/5 dark:text-indigo-200 dark:ring-indigo-500/30">
           <CheckIcon className="h-5 w-5 flex-none fill-indigo-500 stroke-white dark:fill-indigo-200/20 dark:stroke-indigo-200" />
-          Thanks for your feedback!
+          感谢你的反馈
         </div>
       </div>
     )

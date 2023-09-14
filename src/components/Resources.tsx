@@ -29,6 +29,10 @@ import { DocumentIcon } from './icons/DocumentIcon'
 import { CheckIcon } from './icons/CheckIcon'
 import { ListIcon } from './icons/ListIcon'
 import { PaperAirplaneIcon } from './icons/PaperAirplaneIcon'
+import { ClipboardIcon } from './icons/ClipboardIcon'
+import { LinkIcon } from './icons/LinkIcon'
+import { FolderIcon } from './icons/FolderIcon'
+import { BellIcon } from './icons/BellIcon'
 
 interface Resource {
   href: string
@@ -41,7 +45,7 @@ interface Resource {
   >
 }
 
-const resources: Array<Resource> = [
+const resourcesFe: Array<Resource> = [
   {
     href: '/fe-index',
     name: '初识前端',
@@ -57,7 +61,7 @@ const resources: Array<Resource> = [
     },
   },
   {
-    href: '/js-index',
+    href: '/fe/js/start',
     name: 'JS / TS',
     description:
       'JavaScript 与 TypeScript 是前端的核心语言，几近所有的前端知识都围绕其展开。',
@@ -98,19 +102,6 @@ const resources: Array<Resource> = [
     },
   },
   {
-    href: '/design-patten-index',
-    name: '软件设计模式',
-    description: '不论写什么业务，都不会动摇的编程哲学。',
-    icon: ShapesIcon,
-    pattern: {
-      y: 32,
-      squares: [
-        [0, 2],
-        [1, 4],
-      ],
-    },
-  },
-  {
     href: '/fe-build-index',
     name: '前端构建工具',
     description: '将一切前端工程内的文件，编译为 HTML、CSS 与 JS 的工具。',
@@ -138,6 +129,98 @@ const resources: Array<Resource> = [
     name: '前端架构与基建',
     description: '企业中常见的前端架构与基础设施建设方案。',
     icon: CogIcon,
+    pattern: {
+      y: 32,
+      squares: [
+        [0, 2],
+        [1, 4],
+      ],
+    },
+  },
+]
+
+const resourcesCommon: Array<Resource> = [
+  {
+    href: '/start-index',
+    name: '开发者之路',
+    description:
+      '一片森林里分出两条路，而我却选择了人迹更少的一条，从此决定了我一生的道路。',
+    icon: MapPinIcon,
+    pattern: {
+      y: 16,
+      squares: [
+        [0, 1],
+        [1, 3],
+      ],
+    },
+  },
+  {
+    href: '/algorithm-index',
+    name: '数据结构与算法',
+    description: '算法能力是计算机业内对于逻辑思维能力的衡量标准',
+    icon: BoltIcon,
+    pattern: {
+      y: 16,
+      squares: [
+        [0, 1],
+        [1, 3],
+      ],
+    },
+  },
+  {
+    href: '/network-index',
+    name: '网络与协议',
+    description: '软件之间传输数据的准则',
+    icon: LinkIcon,
+    pattern: {
+      y: -6,
+      squares: [
+        [-1, 2],
+        [1, 3],
+      ],
+    },
+  },
+  {
+    href: '/os-index',
+    name: '操作系统',
+    description: '软件最常见的运行环境之一，其本身也是一个软件。',
+    icon: FolderIcon,
+    pattern: {
+      y: 22,
+      squares: [[0, 1]],
+    },
+  },
+  {
+    href: '/design-patten-index',
+    name: '设计模式',
+    description: '不论写什么业务，都不会动摇的编程哲学。',
+    icon: ShapesIcon,
+    pattern: {
+      y: 32,
+      squares: [
+        [0, 2],
+        [1, 4],
+      ],
+    },
+  },
+  {
+    href: '/software-engineer-index',
+    name: '工程与架构',
+    description: '研究工程的人，最后大都被叫做「架构师」',
+    icon: UsersIcon,
+    pattern: {
+      y: -6,
+      squares: [
+        [-1, 2],
+        [1, 3],
+      ],
+    },
+  },
+  {
+    href: '/keep-alive-index',
+    name: '如何养生',
+    description: '看到这你可能需要提肛了',
+    icon: BellIcon,
     pattern: {
       y: 32,
       squares: [
@@ -236,11 +319,11 @@ function Resource({ resource }: { resource: Resource }) {
   )
 }
 
-export function Resources() {
+function ResourcesFactory(resources: Resource[], title: string, id: string) {
   return (
     <div className="my-16 xl:max-w-none">
-      <Heading level={2} id="resources">
-        前端学习资源
+      <Heading level={2} id={`${id}-resource`}>
+        {title}
       </Heading>
       <div className="not-prose mt-4 grid grid-cols-1 gap-8 border-t border-zinc-900/5 pt-10 dark:border-white/5 sm:grid-cols-2 xl:grid-cols-4">
         {resources.map((resource) => (
@@ -250,3 +333,8 @@ export function Resources() {
     </div>
   )
 }
+
+export const ResourcesFe = () =>
+  ResourcesFactory(resourcesFe, '前端学习资源', 'fe')
+export const ResourcesCommon = () =>
+  ResourcesFactory(resourcesCommon, '软件开发通用', 'common')

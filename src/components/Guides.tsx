@@ -3,24 +3,22 @@ import { Heading } from '@/components/Heading'
 
 const guides = [
   {
-    href: '/authentication',
-    name: '讲给大学生',
-    description: '解答一些很多大学生毕业了也回答不了的问题。',
+    href: '/before',
+    name: '序言',
+    description:
+      '为什么做这个站点？谁适合学习这些知识？读完这一部分，可以保证你问不出「新手学哪门语言好？」这种问题',
   },
   {
-    href: '/pagination',
-    name: 'IT 技能库',
-    description: '工程，设计，管理等，各种互联网办公能用得上的技能',
+    href: '/common',
+    name: '软件开发通用',
+    description:
+      '所有软件开发从业者都可以学习的知识，也是所谓「科班出身」与「非科班」的主要区别',
   },
   {
-    href: '/errors',
-    name: 'IT 哲学',
-    description: '群友们的一些感触，一些高度抽象的方法论',
-  },
-  {
-    href: '/webhooks',
-    name: '广亮的闲谈',
-    description: '群主闲来无事随便说说，也许勉强值得一听',
+    href: '/fe',
+    name: '前端开发',
+    description:
+      '软件开发中「编写 GUI 终端」的岗位的统称，如 Web、iOS、Android 研发等等...',
   },
 ]
 
