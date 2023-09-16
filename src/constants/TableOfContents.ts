@@ -22,10 +22,15 @@ export const navigation: NavGroup[] = [
     title: 'JS / TS',
     links: [
       { title: 'JS 与 TS', href: '/fe/js/start' },
-      { title: 'Conversations', href: '/conversations' },
       { title: 'Messages', href: '/messages' },
       { title: 'Groups', href: '/groups' },
       { title: 'Attachments', href: '/attachments' },
     ],
   },
+  {
+    title: '职业发展',
+    links: [
+      { title: '到底要不要读研?', href: '/conversations/post' },
+    ]
+  }
 ]
