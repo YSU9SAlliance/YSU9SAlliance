@@ -56,7 +56,7 @@ JS 是一种使用便捷，语法简单，性能一般，生态蓬勃的语言�
 
     弱类型与动态类型是 JS 被人们诟病最多的一个特性。
 
-    弱类型体现为不同的类型之间可以进行运算，例如数字可以与字符串相乘。
+    弱类型体现为定义变量不需要🈯️类型，且不同的类型之间可以进行运算，例如数字可以与字符串相乘。
 
     而动态类型体现于程序运行过程中，同一个变量可以被重复赋值为不同的类型，一个原本是字符串的变量，可能一段时间后就被赋值为了函数。
 
@@ -256,19 +256,17 @@ TS 在前端的大型项目内，比 JS 使用起来更加 **靠谱**，所以�
 
 由于 TS 其实是 JS 的 **预编译语言**，也就是说 TS 编译后的产物为 JS，故 TS 没有任何超出 JS 能力范围的能力，只是为了让 JS 更好用而对 JS 进行了阉割，所以也称 **TS 是 JS 的超集** {{ className: 'lead' }}
 
-由于学会 JS 之后往往能 **极快速** 掌握 TS，所以一般先学习 JS 然后学习 TS，把 TS 看作是 JS plus 即可
+由于学会 JS 之后往往能 **极快速** 掌握 TS，所以一般先学习 JS 然后学习 TS，把 TS 看作是 JS plus 即可 {{ className: 'lead' }}
 
 ---
 
 <Row>
   <Col>
-    ### 静态类型与强类型
+    ### 健壮的类型系统
 
-    在前后端分离之后，前端普遍通过 **Node.js** 搭建的本地服务器运行与调试，并使用 Node.js 配套的包管理器 **npm** 管理依赖。
+    TS 与 JS 的类型截然相反，TS 是 **强类型** 且 **静态类型**，类型在初始定义时必须要制定类型，其类型在其整个生命周期过程中，不允许再改变。
 
-    几乎所有你能想到的功能，肯定都有其他人写过并封装成 **npm package**，所以写前端项目大部分时间就像拼积木一样简单。
-
-    对于前端项目来说，搭建也是十分容易的。只需要先去下载并安装 [Node.js](https://nodejs.org)，剩下一切交给 **npm** 就好。
+    不仅如此，TS 还有更强大的基础类型、类型运算与高级类型等针对于类型所做的其他功能。
 
   </Col>
   <Col sticky>
@@ -279,7 +277,102 @@ TS 在前端的大型项目内，比 JS 使用起来更加 **靠谱**，所以�
     let theme: "light" | "dark" = "dark";
     ```
     </CodeGroup>
+    <CodeGroup title="TS 的高级类型与类型运算">
+    ```ts
+    type Student = {
+      age: number;
+      name: string;
+      type: "primary" | "seniory"
+    };
+    // 类型 PimaryStudent 是从 Student 中挑选出 age 和 name 两个属性后，与 type 固定等于 “priamry” 的并集
+    type PimaryStudent = Pick<Student, "age" | "name"> & {type: "primary"};
+    ```
+    </CodeGroup>
+
+  </Col>
+</Row>
+---
+
+<Row>
+  <Col>
+    ### 接口
+
+    TS 中能够作为类型的，除了 **类型 type**、**类 class** 还有 **接口 interface**
+
+    接口是一种 **只定义不实现** 的类型表达，用于描述 **某些属性与方法的集合**。即使一些类或实例没有与某个接口产生任何关系，但是该类或实例满足接口内部定义的各种「要求」，那我们也称这个类或实例 **继承于** 或者 **实现了** 这个接口。
+
+    很多语言都有 interface 这个特性，它能让 **逻辑复用** 更加优雅与简洁，而不是像多继承或者 mixin 一样定义与具体实现强耦合。
+
+  </Col>
+  <Col sticky>
+    <CodeGroup title="TS 的接口">
+    ```ts
+    interface Size {
+      width: number;
+      height: number;
+    }
+
+    let cube = { width: 100, height: 100, z: 100 }
+    let rect = { width: 100, height: 100 }
+    let size: Size = { width: 100, height: 100 }
+    // cube、rect、size 都实现了 Size 接口，即使 cube 与 rect 类型并不为 Size
+    // 在一个需要 Size 类型的位置放入它们，均不会报错
+    ```
+    </CodeGroup>
+
   </Col>
 </Row>
 
 ---
+
+<Row>
+  <Col>
+    ### 更好的类
+
+    JS ES6 后提供的 class 语法糖，其实还是不够接近 Java 与 C++ 这样的典型 OOP 语言中的 class 的语法。
+
+    TS 为 JS 的 class 做了补全，提供了例如 `private`、`protect` 与 `public` 这样的关键字。
+
+    同时 TS 也良好的强调了父类构造函数 `super` 对于子类的意义，有明显的「构造函数链式调用」的环节
+
+  </Col>
+  <Col sticky>
+    <CodeGroup title="TS 的类成员">
+    ```ts
+    class ClassExample {
+      // prv 是一个只能由 ClassExample 这个类内部来访问的变量/函数，被称为私有变量/函数
+      private prv: any;
+      // prt 是一个只能由 ClassExample 与其子类能够访问的变量/函数，被称为保护变量/函数
+      protect prt: any;
+      // pub 是一个能够由 ClassExample 的实例访问的变量/函数，被称为公有变量/函数
+      public pub: any;
+      // sta 是一个只能通过 ClassExample 本身访问的变量/函数，被称为静态变量/函数
+      static sta: any;
+    }
+    ```
+    </CodeGroup>
+    <CodeGroup title="TS 的构造函数链式调用">
+    ```ts
+    // 父类
+    class ClassParent {
+      constructor(value) {
+        this.value = value
+      }
+      public value: number
+    }
+    // 继承于父类的子类
+    class ClassChild extends ClassParent {
+      constructor() {
+        // 在调用父类构造函数 super 前，this 指针不可用
+        // 因为子类实例在创建时需要先创建父类实例，再改造为子类实例
+        super(10)
+      }
+    }
+
+    const child = new ClassChild()
+    console.log(child.value) // 10
+    ```
+    </CodeGroup>
+
+  </Col>
+</Row>
