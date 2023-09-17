@@ -21,7 +21,7 @@ export const navigation: NavGroup[] = [
   {
     title: 'JS / TS',
     links: [
-      { title: 'JS 与 TS', href: '/fe/js/start' },
+      { title: '初识 JS 与 TS', href: '/fe/js/start' },
       { title: 'Messages', href: '/messages' },
       { title: 'Groups', href: '/groups' },
       { title: 'Attachments', href: '/attachments' },
@@ -29,8 +29,6 @@ export const navigation: NavGroup[] = [
   },
   {
     title: '职业发展',
-    links: [
-      { title: '到底要不要考研?', href: '/conversations/post' },
-    ]
-  }
+    links: [{ title: '到底要不要考研?', href: '/conversations/post' }],
+  },
 ]
