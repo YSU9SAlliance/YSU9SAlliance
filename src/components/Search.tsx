@@ -21,7 +21,7 @@ import {
 import { Dialog, Transition } from '@headlessui/react'
 import clsx from 'clsx'
 
-import { navigation } from '@/components/Navigation'
+import { navigation } from '@/constants'
 import { type Result } from '@/mdx/search.mjs'
 
 type EmptyObject = Record<string, never>
