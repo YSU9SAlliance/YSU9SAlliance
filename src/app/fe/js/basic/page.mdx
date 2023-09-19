@@ -1,0 +1,102 @@
+export const metadata = {
+  title: 'JS 基础语法',
+  description: '快速了解 JS 基础语法',
+}
+
+export const sections = [
+  { title: '声明变量', id: 'declare' },
+  { title: '输出结果', id: 'output' },
+  { title: '选择语句', id: 'select' },
+  { title: '循环语句', id: 'question' },
+]
+
+# JS 基础语法
+
+简单捋一捋 JS 的基础语法。{{ className: 'lead' }}
+
+---
+
+<Row>
+  <Col>
+    ## 声明变量 {{id: 'declare'}}
+
+    使用关键字 `let` 声明变量，使用关键字 `function` 声明函数。在 JS 里，函数也是一种变量。
+
+  </Col>
+  <Col sticky>
+    <CodeGroup title="JS 声明变量">
+    ```js
+    // 声明两个变量，JS 句尾绝大多数情况可以不加分号
+    let a = 1
+    let b = 2
+    // 声明一个接受两个变量，返回其相加结果的函数 add
+    function add(a, b) {
+      return a + b
+    }
+    console.log(add(1, 2)) // 3
+    ```
+    </CodeGroup>
+  </Col>
+</Row>
+
+---
+
+<Row>
+  <Col>
+    ## 输出结果 {{id: 'output'}}
+
+    使用函数 `console.log` 输出结果。
+
+  </Col>
+  <Col sticky>
+    <CodeGroup title="console.log 的使用">
+    ```js
+    let a = 1
+    console.log(a) // 1
+    ```
+    </CodeGroup>
+  </Col>
+</Row>
+
+---
+
+<Row>
+  <Col>
+    ## 选择语句 {{id: 'declare'}}
+
+    JS 的选择语句支持 **if else**、**switch case**、**三目表达式** 等写法。
+
+  </Col>
+  <Col sticky>
+    <CodeGroup title="JS 中的 if 语句">
+    ```js
+    // 声明两个变量，JS 句尾绝大多数情况可以不加分号
+    let a = 1
+    if(a === 1) {
+      console.log("a === 1")
+    } else {
+      console.log("a !== 1")
+    }
+    ```
+    </CodeGroup>
+    <CodeGroup title="JS 中的 switch 语句">
+    ```js
+    let a = 1
+    switch (a) {
+      case 1:
+        console.log("a === 1")
+        break
+      default:
+        console.log("a !== 1")
+        break
+    }
+    ```
+    </CodeGroup>
+        <CodeGroup title="JS 中的三目表达式">
+    ```js
+    let a = 1
+    a === 1 ? console.log("a === 1") : console.log("a !== 1")
+    ```
+    </CodeGroup>
+  </Col>
+</Row>
