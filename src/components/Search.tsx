@@ -151,12 +151,14 @@ function LoadingIcon(props: React.ComponentPropsWithoutRef<'svg'>) {
 
 function HighlightQuery({ text, query }: { text: string; query: string }) {
   return (
-    <Highlighter
-      highlightClassName="underline bg-transparent text-indigo-500"
-      searchWords={[query]}
-      autoEscape={true}
-      textToHighlight={text}
-    />
+    <span>
+      <Highlighter
+        highlightClassName="underline bg-transparent text-indigo-500"
+        searchWords={[query]}
+        autoEscape={true}
+        textToHighlight={text}
+      />
+    </span>
   )
 }
 
