@@ -3,6 +3,7 @@ export interface NavGroup {
   links: {
     title: string
     href: string
+    tag?: string
   }[]
 }
 
@@ -23,8 +24,24 @@ export const navigation: NavGroup[] = [
     links: [
       { title: '初识 JS 与 TS', href: '/fe/js/start' },
       { title: 'JS 基础语法', href: '/fe/js/basic' },
-      { title: 'Groups', href: '/groups' },
-      { title: 'Attachments', href: '/attachments' },
+      { title: 'JS 数据结构', href: '/fe/js/structure' },
+    ],
+  },
+  {
+    title: '前端框架',
+    links: [
+      { title: '前端框架介绍', href: '/fe/framework/start' },
+      {
+        title: '组件 Component',
+        href: '/fe/framework/component',
+        tag: 'API',
+      },
+      { title: '样式 Style', href: '/fe/framework/style' },
+      { title: '钩子 Hook', href: '/fe/framework/hook' },
+      { title: '上下文 Context', href: '/fe/framework/context' },
+      { title: '状态管理 State', href: '/fe/framework/state' },
+      { title: '路由 Route', href: '/fe/framework/route' },
+      { title: '服务端渲染 SSR', href: '/fe/framework/ssr' },
     ],
   },
   {
