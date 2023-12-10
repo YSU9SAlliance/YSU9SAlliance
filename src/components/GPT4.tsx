@@ -56,7 +56,7 @@ export default function Basic() {
           抱歉，单个问题最长 5000 字符，如有需求可以参考&nbsp;
           <a
             target="_blank"
-            href="https://wrpnn3mat2.feishu.cn/docx/LAA5dUTBQoa9w1xLRAzcwBaTnYb?from=from_copylink"
+            href="https://z57ak931n0.feishu.cn/docx/PxJld32t6oLfvkxEIUPcGcoznSb?from=from_copylink"
           >
             GPT 注册升级教程
           </a>
