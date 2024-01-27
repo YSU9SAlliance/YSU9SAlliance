@@ -20,6 +20,10 @@ export const navigation: NavGroup[] = [
     ],
   },
   {
+    title: '笔记整理',
+    links: [{ title:'第一次笔记',href:'/arrangement/'}],
+  },
+  {
     title: 'AI 使用',
     links: [{ title: 'GPT-4 代理', href: '/common/ai/gpt4' }],
   },

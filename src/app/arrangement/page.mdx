@@ -1,0 +1,30 @@
+**（从GitHub上将代码弄到本地并且运行）**
+
+一．知识补充：Node.js和npm（Node.js的包管理器）。Webpack和大多数现代前端工具都是基于Node.js构建的。可以在Node.js官网下载并安装Node.js，npm通常会与Node.js一起安装。
+
+二.前置准备：
+
+1.期间要安装很多程序，如VScode,Node.js,yarn,Git,目前的方法就用到了前三个  
+
+2.要对命令提示符，Windows powershell,有了解，知道怎么用代码开启管理员权限（Set-ExecutionPolicy RemoteSigned -Scope CurrentUser）；知道怎么在PowerShell中找到指定目录（cd+复制下来的地址）  
+
+3.要知道什么时候可以执行 npm install 这个指令，只看当前目录下是否有 package.json 文件；
+npm install 是一个根据蓝图将项目拼装起来的命令，package.json 是蓝图，拿到这个文件，需要的零件 npm 自己会帮你找齐   
+
+4.要知道指定的项目根目录在哪
+
+
+三.具体流程：
+
+1.github代码保存本地
+一般来说是本地建一个文件夹，拖到 VSCode 里，Ctrl + 数字 1 左面的按键打开控制台
+然后 git clone 仓库地址（URL）
+再之后需要登录就输入一下邮箱密码，就 clone 下来了。
+
+2.找到package.json文件所在的根目录，复制下地址
+
+3.在准备好开启管理员权限的powershell情况下，找到指定目录
+
+4．阅读Read me文档，根据文档中的提示，依次执行指令
+
+5.返回链接，在控制台里，Ctrl + 左键点那个 localhost:3000（不绝对）当然也可以在浏览器里输入这个地址
