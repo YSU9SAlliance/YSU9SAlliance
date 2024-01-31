@@ -1,30 +1,76 @@
-**（从GitHub上将代码弄到本地并且运行）**
-
-一．知识补充：Node.js和npm（Node.js的包管理器）。Webpack和大多数现代前端工具都是基于Node.js构建的。可以在Node.js官网下载并安装Node.js，npm通常会与Node.js一起安装。
-
-二.前置准备：
-
-1.期间要安装很多程序，如VScode,Node.js,yarn,Git,目前的方法就用到了前三个  
-
-2.要对命令提示符，Windows powershell,有了解，知道怎么用代码开启管理员权限（Set-ExecutionPolicy RemoteSigned -Scope CurrentUser）；知道怎么在PowerShell中找到指定目录（cd+复制下来的地址）  
-
-3.要知道什么时候可以执行 npm install 这个指令，只看当前目录下是否有 package.json 文件；
-npm install 是一个根据蓝图将项目拼装起来的命令，package.json 是蓝图，拿到这个文件，需要的零件 npm 自己会帮你找齐   
-
-4.要知道指定的项目根目录在哪
+# 任务笔记汇总
 
 
-三.具体流程：
 
-1.github代码保存本地
-一般来说是本地建一个文件夹，拖到 VSCode 里，Ctrl + 数字 1 左面的按键打开控制台
-然后 git clone 仓库地址（URL）
+
+**一. 学会翻墙， OpenAI的注册, 及可以正常使用Google**
+
+1. 翻墙：在此不赘述,方法很多,总之要学会设置全域代理模式(提几个关键词:VPN,Clash)
+2. OpenAI的注册:首先得有一个海外邮箱(怎么注册B站上有很多教程)，然后跟着操作走就是了
+
+**补充** : 考虑稳定性的话更推荐使用Google邮箱注册 (那就不得不要学会海外手机号租借了,推荐使用sms官网)
+当然,如果不想弄得这么复杂的话,可以试试foxmail,QQ邮箱支持绑定foxmail邮箱,foxmail邮箱在国外也可以正常使用
+
+3. 使用Google:既然都会科学上网了，那么谷歌也可以使用啦，不过可以用和会用还是有一些差距的，谷歌是全球最大的搜索引擎，
+如果想学会怎么去好好使用它的话可以看看B站上的教程
+<Note>
+  任务一的知识补充:GPT-3.5免费,GPT-4收费,大概一百多一个月,    
+  OpenAI的账号可以有两个用途,
+  一是使用GPT,二是使用API Key来调用大模型,
+  这个key可以在自己的账户里生成,不知道要不要花钱,不过要手机号验证
+</Note>
+
+**二. 注册GitHub,本地安装Git,及从GitHub上拉取源码**
+
+1. 注册GitHub:B站上有教程,邮箱可以是QQ邮箱,名字不可以重复
+
+2. 本地安装 Git:到Git官网去安装就可以了,操作很简单,如果还有问题去B站搜一下即可
+
+3. 从GitHub上拉取源码:
+
+**A. 前期准备：**
+
+(1)期间要安装很多程序:如VScode,Node.js,yarn(也可以称作安装项目依赖,具体安装教程可以问GPT或者到B站搜)
+
+(2)要对命令提示符(cmd),Windows powershell,有了解
+知道怎么用代码开启管理员权限(Set-ExecutionPolicy RemoteSigned -Scope CurrentUser):
+知道怎么在PowerShell中找到指定目录(cd+复制下来的地址)  
+
+(3)要知道什么时候可以执行 npm install 这个指令,看当前目录下是否有 package.json 文件；
+npm install 是一个根据蓝图将项目拼装起来的命令,package.json 是蓝图,拿到这个文件,需要的零件 npm 自己会帮你找齐  
+
+(4)要知道怎样才算是在指定的项目根目录下
+
+**B. 具体实操:**
+
+一般来说是本地建一个文件夹，拖到 VSCode 里,Ctrl + 数字 1 左面的按键打开控制台
+然后 git clone 仓库地址(URL)
 再之后需要登录就输入一下邮箱密码，就 clone 下来了。
 
-2.找到package.json文件所在的根目录，复制下地址
 
-3.在准备好开启管理员权限的powershell情况下，找到指定目录
 
-4．阅读Read me文档，根据文档中的提示，依次执行指令
+<Note>
+ 任务二知识补充:Node.js和npm(Node.js的包管理器)。
+ Webpack和大多数现代前端工具都是基于Node.js构建的。
+ 可以在Node.js官网下载并安装Node.js,npm通常会与Node.js一起安装。
+ 控制台也称终端或命令控制符
+</Note>
 
-5.返回链接，在控制台里，Ctrl + 左键点那个 localhost:3000（不绝对）当然也可以在浏览器里输入这个地址
+
+**三. 启动项目**
+
+(1)找到package.json文件所在的根目录,复制下地址
+
+(2)在准备好开启管理员权限的powershell情况下,cd进入指定目录
+
+(3)阅读README文档,根据文档中的提示,依次执行指令
+
+(4)返回链接,在控制台里,Ctrl + 左键点那个 localhost:3000(不绝对)当然也可以在浏览器里输入这个地址
+
+
+<Note>
+任务三知识补充：
+  - 单写 yarn 相当于 npm install
+  - Yarn xxx 相当于 npm run xxx
+  - Yarn 在处理依赖版本冲突时更加稳健，也更慢，不过运行起来的概率比较高
+</Note>
