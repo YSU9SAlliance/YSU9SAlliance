@@ -1,0 +1,226 @@
+export const metadata = {
+  title: 'JS 类型系统',
+  description: 'JS 类型系统概述',
+}
+
+export const sections = [
+  { title: '原始类型', id: 'primitive' },
+  { title: '引用类型', id: 'reference' },
+  { title: '类型判断', id: 'check' },
+  { title: '常见问题', id: 'questions' },
+  { title: '逸闻趣事', id: 'tales' },
+]
+
+# JS 类型系统
+
+本文会系统梳理 JS 中类型相关的知识，这是通常是理解 JS 这门语言所需的第一课。{{ className: 'lead' }}
+
+<Note>注：本文默认使用 ES6 (即 ES2015) 规范进行讲解</Note>
+
+---
+
+<Row>
+  <Col sticky>
+    ## 原始类型 {{id: 'primitive'}}
+
+    截止至 <a target="_blank" href="https://262.ecma-international.org/13.0/">ES2022</a> 标准，JS 目前有 7 种原始类型：
+    - **number**：表示双精度 64 位浮点数值，用于表示整数和小数，遵从 IEEE 754 双精度浮点数标准。
+    - **string**：表示文本数据，由16位的 Unicode 字符序列组成。
+    - **boolean**：表示逻辑实体，有两个值：`true` 和 `false`。
+    - **undefined**：表示未定义的值，通过调用未初始化的变量可以看到这个类型。
+    - **null**：表示没有值的状态，除了主动使用 null，正常一般不会拿到这个值。
+    - **bigint**：可以表示任意大的整数。
+    - **symbol**：是一种唯一且不可变的数据类型，通常用来作为对象属性的键。
+
+    其中 **symbol** 与 **bigint** 是 ES5 之后引入的。symbol 于 ES6 引入，即 ES2015，而 bigint 于 ES11 引入，即 ES2020。
+
+  </Col>
+
+  <Col>
+    <CodeGroup title="JS 原始类型变量的定义">
+    ```js
+    // 定义一个 number 类型变量的方法
+    let num1 = 0 // 直接定义，推荐
+    let num2 = Number("0") // 尝试将任意类型转为 number，不推荐
+
+    // 定义一个 string 类型变量的方法
+    let str1 = "JavaScript" // 推荐
+    let str2 = String(123) // 得到字符串 "123"，不推荐
+
+    // 定义一个 boolean 类型变量的方法
+    let bool1 = true // 推荐
+    let bool2 = Boolean(0) // 得到 false，不推荐
+
+    // 定义一个 undefined 类型的变量，没有构造函数可用
+    let a // a 值为 undefined
+
+    // 定义一个值为 null 的变量，没有构造函数可用
+    let b = null
+
+    // 定义一个 bigint 变量
+    let big1 = 10000000000000000000000001n // 末尾加 n
+    let big2 = BigInt("10000000000000000000000001")
+
+    // 这个数不用 bigint 会溢出，它超出了 number 的整数表示范围
+    let overflow = 10000000000000000000000001
+    console.log(overflow) // 得到 1e+25，丢失了末尾的一个 1
+
+    // 定义一个 symbol 变量，它只能通过构造函数创建
+    // symbol 的用法，在讲数据结构 Object 时再展开讲解
+    let symbol1 = Symbol()
+    ```
+    </CodeGroup>
+
+  </Col>
+</Row>
+
+---
+
+<Row>
+  <Col sticky>
+    ## 引用类型 {{id: 'reference'}}
+
+    JS 中，除去原始类型外剩下所有的类型都是引用类型，并且它们都直接或者间接的继承于 **Object** 类型。
+
+    常见的引用类型有 **Object**、**Array**、**Function**、**Map**、**Set** 等等，引用类型使用大驼峰命名法，这一点与原始类型的全部小写有明显区别。
+
+    它们大都使用 **new** 关键字来定义变量。
+
+    <Note>new 关键字只能用于得到引用类型，new Number() 得到的是 **Number** 类型而非 **number** 类型</Note>
+
+    另外，可以利用 **class** 关键字来自定义类型。
+
+  </Col>
+  <Col >
+    <CodeGroup title="JS 引用类型变量的定义">
+    ```js
+    // 定义一个没有语法糖的引用类型变量
+    let set = new Set()
+    let map = new Map()
+    let object = new Object()
+
+    // 定义一个 Object 的几种方法
+    let obj1 = {} // 推荐
+    let obj3 = new Object() // 不推荐
+    let obj2 = Object() // 十分不推荐
+
+
+    // 定义一个函数的几种方法
+    // 使用箭头函数，很推荐
+    let add = (a, b) => a + b
+    // 使用 function 关键字，推荐
+    function add(a, b) {
+      return a + b
+    }
+    // 使用构造函数，很危险的行为，但是可以实现动态创建函数，不推荐
+    let add = new Function("a", "b", "return a + b")
+    ```
+    </CodeGroup>
+
+    <CodeGroup title="JS 通过 class 自定义类型">
+    ```js
+    // 使用 class 关键字自定义一个类型，其他方法讲原型链再讲
+    // 定义一个叫做 Book 的类型
+    class Book {
+      // 定义成员属性 name，代表书名
+      name
+      // 定义成员属性 pages，代表页数
+      pages
+      // 定义构造函数，用来告诉使用者如何创建这个类型的变量
+      constructor(name, pages) {
+        // 处理使用者定义变量时传入的值
+        this.name = name
+        this.pages = pages
+      }
+    }
+
+    // 定义 Book 类型的变量
+    let book1 = new Book("Book 1", 100) // 一本叫 Book 1 的书，有 100 页
+    ```
+    </CodeGroup>
+
+  </Col>
+</Row>
+
+---
+
+<Row>
+  <Col sticky>
+    ## 类型判断 {{id: 'check'}}
+
+    <Note>提前提一嘴，笔者认为 JS 自带的类型判断是一言难尽的难用</Note>
+
+    JS 中类型判断比较复杂，通常有 **Object.prototype.toString.call()**、**typeof**、**instanceof** 这三种方式：
+    - **Object.prototype.toString.call()** 相对靠谱，但是返回数据比较复杂，并且理解起来也有些复杂，需要 JS 的 this 指针与原型链机制后才能理解
+    - **typeof** 只能用于判断原始类型的区别，判断 **null** 时会错误地返回 **object**，除去 **Function** 外的所有引用类型，使用它判断都会得到 **object**，而 **Function** 会得到 **function**
+    - **instanceof** 只能用于引用类型的判断，它的字面意思就是 **XX 的实例**
+
+  </Col>
+  <Col >
+    <CodeGroup title="JS 的 typeof">
+    ```js
+    typeof "hello";   // "string"
+    typeof 42;        // "number"
+    typeof true;      // "boolean"
+    typeof undefined; // "undefined"
+    typeof 10n        // "bigint"
+    typeof Symbol()   // "symbol"
+    
+    typeof {};      // "object"
+    typeof [];      // "object"
+    typeof null;    // "object" 就尼玛离谱
+    typeof function(){}; // "function" 就尼玛离谱
+    ```
+    </CodeGroup>
+    <CodeGroup title="JS 的 instanceof">
+    ```js
+    [] instanceof Array;        // true
+    new Date() instanceof Date; // true
+    ```
+    </CodeGroup>
+        <CodeGroup title="JS 中的三目表达式">
+    ```js
+    let a = 1
+    a === 1 ? console.log("a === 1") : console.log("a !== 1")
+    ```
+    </CodeGroup>
+  </Col>
+</Row>
+
+---
+
+<Row>
+  <Col>
+    ## 循环语句 {{id: 'loop'}}
+
+    JS 除了支持众多语言通用的 **while**、**for** 循环语句外，还支持例如 **for of** 以及其他众多的循环与遍历方式。
+
+  </Col>
+  <Col sticky>
+    <CodeGroup title="JS 中的 while 循环">
+    ```js
+    let i = 0
+    while(i < 10) {
+      console.log(i)
+      i += 1
+    }
+    ```
+    </CodeGroup>
+    <CodeGroup title="JS 中的 for 循环">
+    ```js
+    for(let i = 0; i < 10; i++ ) {
+      console.log(i)
+    }
+    ```
+    </CodeGroup>
+        <CodeGroup title="JS 中的 for of 循环">
+    ```js
+    let arr = [1, 2, 3, 4, 5]
+    // 在一些其他语言里，这个语法或许名为 for each
+    for (let item of arr) {
+      console.log(item) // item 为 arr 中的元素
+    }
+    ```
+    </CodeGroup>
+  </Col>
+</Row>

@@ -32,6 +32,7 @@ export const navigation: NavGroup[] = [
     links: [
       { title: '初识 JS 与 TS', href: '/fe/js/start' },
       { title: 'JS 基础语法', href: '/fe/js/basic' },
+      { title: 'JS 类型系统', href: '/fe/js/type' },
       { title: 'JS 数据结构', href: '/fe/js/structure' },
     ],
   },

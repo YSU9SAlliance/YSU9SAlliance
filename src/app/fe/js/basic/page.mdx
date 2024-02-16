@@ -22,20 +22,32 @@ export const sections = [
 
     使用关键字 `let` 声明变量，使用关键字 `function` 声明函数。在 JS 里，函数也是一种变量。
 
+    在同一作用域内：
+    - `let` 声明的变量，可以重复定义，但不能重复声明。**推荐使用**
+    - `var` 声明的变量，可以重复声明与定义，但 **不推荐使用**
+    - `const` 用于 **定义常量**，不可被重复声明与定义。
+
+    - `function` 定义的函数，可以被重复声明与定义，后者覆盖前者，但不推荐重复声明与定义。
+
   </Col>
   <Col sticky>
     <CodeGroup title="JS 声明变量">
     ```js
     // 声明两个变量，JS 句尾绝大多数情况可以不加分号
-    let a = 1
-    let b = 2
+    let x = 1
+    let y = 2
     // 声明一个接受两个变量，返回其相加结果的函数 add
     function add(a, b) {
       return a + b
     }
-    console.log(add(1, 2)) // 3
+    // 使用 const 声明，用箭头函数进行定义一个常量函数
+    const minus = (a, b) => a - b
+
+    console.log(add(x, y)) // 3
+    console.log(minus(x, y)) // -1
     ```
     </CodeGroup>
+
   </Col>
 </Row>
 
@@ -65,6 +77,12 @@ export const sections = [
     ## 条件语句 {{id: 'condition'}}
 
     JS 的选择语句支持 **if else**、**switch case**、**三目表达式** 等写法。
+
+{' '}
+
+<Note>
+  注意，其他语言的 **==** 与 **!=** 在 JS 中应该替换为 **===** 与 **!==**
+</Note>
 
   </Col>
   <Col sticky>
@@ -113,7 +131,6 @@ export const sections = [
   <Col sticky>
     <CodeGroup title="JS 中的 while 循环">
     ```js
-    // 声明两个变量，JS 句尾绝大多数情况可以不加分号
     let i = 0
     while(i < 10) {
       console.log(i)
