@@ -151,7 +151,7 @@ export const sections = [
     <Note>提前提一嘴，笔者认为 JS 自带的类型判断是一言难尽的难用</Note>
 
     JS 中类型判断比较复杂，通常有 **Object.prototype.toString.call()**、**typeof**、**instanceof** 这三种方式：
-    - **Object.prototype.toString.call()** 相对靠谱，但是返回数据比较复杂，并且理解起来也有些复杂，需要 JS 的 this 指针与原型链机制后才能理解
+    - **Object.prototype.toString.call() 相对靠谱**，但是返回数据比较复杂，并且 **一般无法识别用户自定义的类型**
     - **typeof** 只能用于判断原始类型的区别，判断 **null** 时会错误地返回 **object**，除去 **Function** 外的所有引用类型，使用它判断都会得到 **object**，而 **Function** 会得到 **function**
     - **instanceof** 只能用于引用类型的判断，它的字面意思就是 **XX 的实例**
 
@@ -159,67 +159,62 @@ export const sections = [
   <Col >
     <CodeGroup title="JS 的 typeof">
     ```js
-    typeof "hello";   // "string"
-    typeof 42;        // "number"
-    typeof true;      // "boolean"
-    typeof undefined; // "undefined"
-    typeof 10n        // "bigint"
-    typeof Symbol()   // "symbol"
+    typeof "hello";   // 'string'
+    typeof 42;        // 'number'
+    typeof true;      // 'boolean'
+    typeof undefined; // 'undefined'
+    typeof 10n        // 'bigint'
+    typeof Symbol()   // 'symbol'
     
-    typeof {};      // "object"
-    typeof [];      // "object"
-    typeof null;    // "object" 就尼玛离谱
-    typeof function(){}; // "function" 就尼玛离谱
+    typeof {};           // 'object'
+    typeof [];           // 'object'
+    typeof null;         // 'object'
+    typeof function(){}; // 'function'
     ```
     </CodeGroup>
     <CodeGroup title="JS 的 instanceof">
     ```js
     [] instanceof Array;        // true
     new Date() instanceof Date; // true
+
+    // instanceof 只能用于判断引用类型，对原始类型不奏效
+    1 instanceof Number         // false
+    Number(1) instanceof Number // false
+    new Number(1) instanceof Number // true
     ```
     </CodeGroup>
-        <CodeGroup title="JS 中的三目表达式">
+    <CodeGroup title="用 Object.prototype.toString.call 判断类型">
     ```js
-    let a = 1
-    a === 1 ? console.log("a === 1") : console.log("a !== 1")
+    const opt = Object.prototype.toString
+    opt.call("hello");      // '[object String]'
+    opt.call(42);           // '[object Number]'
+    opt.call(true);         // '[object Boolean]'
+    opt.call(undefined);    // '[object Undefined]'
+    opt.call(10n)           // '[object BigInt]'
+    opt.call(Symbol())      // '[object Symbol]'
+    opt.call({});           // '[object Object]'
+    opt.call([]);           // '[object Array]'
+    opt.call(null);         // '[object Null]'
+    opt.call(function(){}); // '[object Function]'
     ```
     </CodeGroup>
-  </Col>
-</Row>
-
----
-
-<Row>
-  <Col>
-    ## 循环语句 {{id: 'loop'}}
-
-    JS 除了支持众多语言通用的 **while**、**for** 循环语句外，还支持例如 **for of** 以及其他众多的循环与遍历方式。
-
-  </Col>
-  <Col sticky>
-    <CodeGroup title="JS 中的 while 循环">
+    <CodeGroup title="Object.prototype.toString.call 的不足">
     ```js
-    let i = 0
-    while(i < 10) {
-      console.log(i)
-      i += 1
+    const opt = Object.prototype.toString
+
+    // 你自己定义的类必须要加个 Symbol.toStringTag 属性才能被它识别
+    class MyClass {}
+    class CustomClass {
+      get [Symbol.toStringTag]() {
+        return "CustomClass";
+      }
     }
-    ```
-    </CodeGroup>
-    <CodeGroup title="JS 中的 for 循环">
-    ```js
-    for(let i = 0; i < 10; i++ ) {
-      console.log(i)
-    }
-    ```
-    </CodeGroup>
-        <CodeGroup title="JS 中的 for of 循环">
-    ```js
-    let arr = [1, 2, 3, 4, 5]
-    // 在一些其他语言里，这个语法或许名为 for each
-    for (let item of arr) {
-      console.log(item) // item 为 arr 中的元素
-    }
+    opt.call(new MyClass())      // '[object Object]'
+    opt.call(new CustomClass()); // '[object CustomClass]'
+
+    // 另外它还分不清 Number 与 number 类型
+    opt.call(Number(1)) // '[object Number]'
+    opt.call(new Number(1)) // '[object Number]'
     ```
     </CodeGroup>
   </Col>
