@@ -22,9 +22,9 @@ export const navigation: NavGroup[] = [
   {
     title: '笔记整理',
     links: [
-      { title:'第一次笔记',href:'/arrangement/'},
-      { title:'第二次笔记',href:'/arrangement/'},
-      { title:'第三次笔记',href:'/arrangement/'},
+      { title:'第一次笔记',href:'/arrangement/page'},
+      { title:'第二次笔记',href:'/arrangement/fengzhiadd'},
+      { title:'第三次笔记',href:'/arrangement/3.15arrangement'},
     ],
   },
   {
