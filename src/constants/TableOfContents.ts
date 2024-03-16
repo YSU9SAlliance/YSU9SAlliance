@@ -22,7 +22,7 @@ export const navigation: NavGroup[] = [
   {
     title: '笔记整理',
     links: [
-      { title:'第一次笔记',href:'/arrangement/'},
+      { title:'第一次笔记',href:'/arrangement1/'},
       { title:'第二次笔记',href:'/arrangement2/'},
       { title:'第三次笔记',href:'/arrangement3/'},
     ],
