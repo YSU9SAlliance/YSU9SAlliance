@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { useTheme } from 'next-themes'
 import useAskAi from './hooks/askAi'
 import TextField from '@mui/material/TextField'
-import Button from '@mui/material/Button'
+import { Button } from './ui/button'
 
 export default function Basic() {
   const [fetching, setFetching] = useState(false)
@@ -41,7 +41,6 @@ export default function Basic() {
         ></TextField>
         <Button
           className="w-11 min-w-0 p-0"
-          variant="contained"
           onClick={() => {
             if (question.length < 5000) {
               ask(question)
