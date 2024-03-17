@@ -43,8 +43,10 @@ export default function Basic() {
           className="w-11 min-w-0 p-0"
           variant="contained"
           onClick={() => {
-            setQuestion('')
-            question.length > 5000 && ask(question)
+            if (question.length < 5000) {
+              ask(question)
+              setQuestion('')
+            }
           }}
           disabled={fetching || question.length > 5000 || !question}
         >

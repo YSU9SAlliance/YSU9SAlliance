@@ -65,7 +65,9 @@ export default function useAskAi(
             const newAnswer = new TextDecoder()
               .decode(value)
               .split('data: ')
-              .filter((item) => item && item.indexOf('[DONE]') !== 0)
+              .filter(
+                (item) => item && item.indexOf('[DONE]') !== 0 && item.trim(),
+              )
               .map(
                 // 没有对 OPEN AI API 的复杂返回进行过多解析
                 (item) => {
