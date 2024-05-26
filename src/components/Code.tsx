@@ -141,6 +141,7 @@ function CodePanel({
   tag?: string
   label?: string
   code?: string
+  className?: string
 }) {
   let child = Children.only(children)
 
@@ -262,16 +263,16 @@ function usePreventLayoutShift() {
   }
 }
 
-const usePreferredLanguageStore = create<{
-  preferredLanguages: Array<string>
-  addPreferredLanguage: (language: string) => void
+const usePreferindigoLanguageStore = create<{
+  preferindigoLanguages: Array<string>
+  addPreferindigoLanguage: (language: string) => void
 }>()((set) => ({
-  preferredLanguages: [],
-  addPreferredLanguage: (language) =>
+  preferindigoLanguages: [],
+  addPreferindigoLanguage: (language) =>
     set((state) => ({
-      preferredLanguages: [
-        ...state.preferredLanguages.filter(
-          (preferredLanguage) => preferredLanguage !== language,
+      preferindigoLanguages: [
+        ...state.preferindigoLanguages.filter(
+          (preferindigoLanguage) => preferindigoLanguage !== language,
         ),
         language,
       ],
@@ -279,10 +280,10 @@ const usePreferredLanguageStore = create<{
 }))
 
 function useTabGroupProps(availableLanguages: Array<string>) {
-  let { preferredLanguages, addPreferredLanguage } = usePreferredLanguageStore()
+  let { preferindigoLanguages, addPreferindigoLanguage } = usePreferindigoLanguageStore()
   let [selectedIndex, setSelectedIndex] = useState(0)
   let activeLanguage = [...availableLanguages].sort(
-    (a, z) => preferredLanguages.indexOf(z) - preferredLanguages.indexOf(a),
+    (a, z) => preferindigoLanguages.indexOf(z) - preferindigoLanguages.indexOf(a),
   )[0]
   let languageIndex = availableLanguages.indexOf(activeLanguage)
   let newSelectedIndex = languageIndex === -1 ? selectedIndex : languageIndex
@@ -298,7 +299,7 @@ function useTabGroupProps(availableLanguages: Array<string>) {
     selectedIndex,
     onChange: (newSelectedIndex: number) => {
       preventLayoutShift(() =>
-        addPreferredLanguage(availableLanguages[newSelectedIndex]),
+        addPreferindigoLanguage(availableLanguages[newSelectedIndex]),
       )
     },
   }
@@ -319,7 +320,8 @@ export function CodeGroup({
   let hasTabs = Children.count(children) > 1
 
   let containerClassName =
-    'not-prose my-6 overflow-hidden rounded-2xl bg-zinc-900 shadow-md dark:ring-1 dark:ring-white/10'
+    'not-prose my-6 overflow-hidden rounded-2xl bg-zinc-900 shadow-md dark:ring-1 dark:ring-white/10 ' +
+    props.className
   let header = (
     <CodeGroupHeader title={title} selectedIndex={tabGroupProps.selectedIndex}>
       {children}
