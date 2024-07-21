@@ -217,7 +217,7 @@ async function submitUserMessage(content: string) {
             .describe('创新方案的列表'),
         }),
         generate: async function* (LCTData) {
-          aiState.update({
+          aiState.done({
             ...aiState.get(),
             messages: [
               ...aiState.get().messages,
@@ -228,7 +228,6 @@ async function submitUserMessage(content: string) {
               },
             ],
           })
-          console.log(LCTData)
           return <Lct {...LCTData} />
         },
       },
