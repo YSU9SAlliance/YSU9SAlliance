@@ -68,15 +68,14 @@ const LCTData: React.FC<LCTDataProps | undefined> = (props) => {
           <div className="space-y-4">{renderItems(typicalFeatures)}</div>
         </div>
       </div>
-      <div className="flex flex-col gap-4 mt-4">
+      <div className="mt-4 flex flex-col gap-4">
         {innovativePlan.map((item, index) => (
-          <div
-            key={index}
-            className="rounded-lg border p-6 backdrop-blur-lg"
-          >
+          <div key={index} className="rounded-lg border p-6 backdrop-blur-lg">
             <h1 className="mb-4 text-xl font-bold">{item.title}</h1>
             <p className="text-muted-foreground">{item.description}</p>
-            <p className="text-muted-foreground">{"创新点：" + item.keypoint.join(', ')}</p>
+            <p className="text-muted-foreground">
+              {'创新点：' + item.keypoint.join(', ')}
+            </p>
           </div>
         ))}
       </div>
@@ -89,7 +88,6 @@ export default LCTData
 function ResourcePattern({
   mouseX,
   mouseY,
-  isHoverd,
   ...gridProps
 }: Omit<
   React.ComponentPropsWithoutRef<typeof GridPattern>,
@@ -97,11 +95,8 @@ function ResourcePattern({
 > & {
   mouseX: MotionValue<number>
   mouseY: MotionValue<number>
-  isHoverd: boolean
 }) {
-  let _mouseX = useMotionValue(-1000)
-  let _mouseY = useMotionValue(-1000)
-  let maskImage = useMotionTemplate`radial-gradient(180px at ${isHoverd ? mouseX : _mouseX}px ${isHoverd ? mouseY : _mouseY}px, white, transparent)`
+  let maskImage = useMotionTemplate`radial-gradient(180px at ${mouseX}px ${mouseY}px, white, transparent)`
   let style = { maskImage, WebkitMaskImage: maskImage }
 
   return (
@@ -138,6 +133,8 @@ function ResourcePattern({
 const LctItem = (props: LCTItem) => {
   let mouseX = useMotionValue(0)
   let mouseY = useMotionValue(0)
+  let _mouseX = useMotionValue(-100)
+  let _mouseY = useMotionValue(-100)
   const [isHovered, setIsHovered] = useState(false)
   return (
     <div
@@ -163,9 +160,8 @@ const LctItem = (props: LCTItem) => {
             [1, 3],
           ],
         }}
-        isHoverd={isHovered}
-        mouseX={mouseX}
-        mouseY={mouseY}
+        mouseX={isHovered ? mouseX : _mouseX}
+        mouseY={isHovered ? mouseY : _mouseY}
       />
       <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-zinc-900/7.5 group-hover:ring-zinc-900/10 dark:ring-white/10 dark:group-hover:ring-white/20" />
       <div className="relative rounded-2xl p-4">
