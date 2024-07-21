@@ -28,13 +28,6 @@ export const navigation: NavGroup[] = [
     ],
   },
   {
-    title: 'AI 工具',
-    links: [
-      { title: 'GPT-4 代理', href: '/common/ai/gpt4' },
-      { title: 'LCT 反向法辅助工具', href: '/common/ai/lct' },
-    ],
-  },
-  {
     title: 'JS / TS',
     links: [
       { title: '初识 JS 与 TS', href: '/fe/js/start' },

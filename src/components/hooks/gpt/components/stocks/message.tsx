@@ -1,4 +1,3 @@
-// @ts-nocheck
 'use client'
 import { IconOpenAI, IconUser } from '../icons'
 import { cn } from '@/lib/utils'

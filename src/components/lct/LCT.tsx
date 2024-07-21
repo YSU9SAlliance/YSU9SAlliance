@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React, { useState } from 'react'
 import { disneylandLCTData } from './data'
 import { GridPattern } from '../GridPattern'
 import {
@@ -8,6 +8,7 @@ import {
   useMotionTemplate,
   useMotionValue,
 } from 'framer-motion'
+import { randomUUID } from 'crypto'
 
 interface LCTItem {
   title: string
@@ -20,87 +21,64 @@ interface LCTDataProps {
   necessaryConditions: LCTItem[]
   operationalPractices: LCTItem[]
   typicalFeatures: LCTItem[]
+  innovativePlan: {
+    title: string
+    description: string
+    keypoint: string[]
+  }[]
 }
 
-const LCTData: React.FC<LCTDataProps> = () => {
+const LCTData: React.FC<LCTDataProps | undefined> = (props) => {
   const {
     title,
     description,
     necessaryConditions,
     operationalPractices,
     typicalFeatures,
-  } = disneylandLCTData
-
-  let mouseX = useMotionValue(0)
-  let mouseY = useMotionValue(0)
-
-  function onMouseMove({
-    currentTarget,
-    clientX,
-    clientY,
-  }: React.MouseEvent<HTMLDivElement>) {
-    let { left, top } = currentTarget.getBoundingClientRect()
-    mouseX.set(clientX - left)
-    mouseY.set(clientY - top)
-  }
+  } = props?.title == undefined ? disneylandLCTData : props
+  const innovativePlan = props?.innovativePlan ?? []
 
   const renderItems = (items: LCTItem[]) => {
-    return items.map((item, index) => (
-      <div
-        key={index}
-        onMouseMove={onMouseMove}
-        className="group relative flex rounded-2xl bg-zinc-50 transition-shadow hover:shadow-md hover:shadow-zinc-900/5 dark:bg-white/2.5 dark:hover:shadow-black/5"
-      >
-        <ResourcePattern
-          {...{
-            y: 16,
-            squares: [
-              [0, 1],
-              [1, 3],
-            ],
-          }}
-          mouseX={mouseX}
-          mouseY={mouseY}
-        />
-        <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-zinc-900/7.5 group-hover:ring-zinc-900/10 dark:ring-white/10 dark:group-hover:ring-white/20" />
-        <div className="relative rounded-2xl px-4 pb-0 pt-4">
-          <h3 className="mt-1 text-sm font-semibold leading-7 text-zinc-900 dark:text-white">
-            <span className="absolute inset-0 rounded-2xl" />
-            {item.title}
-          </h3>
-          <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
-            {item.description}
-          </p>
-        </div>
-      </div>
-    ))
+    return items.map((item, index) => <LctItem key={index} {...item} />)
   }
 
   return (
     <div className="">
       {/* Title and Description */}
-      <div className="mb-6 rounded-lg border p-6 pb-0 backdrop-blur-lg">
+      <div className="mb-6 rounded-lg border p-6 backdrop-blur-lg">
         <h1 className="mb-4 text-2xl font-bold">{title}</h1>
         <p className="text-muted-foreground">{description}</p>
       </div>
 
       <div className="flex flex-row gap-4 ">
         <div className="basis-1/3 rounded-lg">
-          <h2 className="mb-4 text-2xl font-semibold">必要条件</h2>
+          <h2 className="mb-4 text-xl font-semibold">必要条件</h2>
           <div className="space-y-4">{renderItems(necessaryConditions)}</div>
         </div>
 
         {/* Operational Practices */}
         <div className="basis-1/3 rounded-lg">
-          <h2 className="mb-4 text-2xl font-semibold ">运营惯例</h2>
+          <h2 className="mb-4 text-xl font-semibold">运营惯例</h2>
           <div className="space-y-4">{renderItems(operationalPractices)}</div>
         </div>
 
         {/* Typical Features */}
         <div className="basis-1/3 rounded-lg">
-          <h2 className="mb-4 text-2xl font-semibold">典型特征</h2>
+          <h2 className="mb-4 text-xl font-semibold">典型特征</h2>
           <div className="space-y-4">{renderItems(typicalFeatures)}</div>
         </div>
+      </div>
+      <div className="flex flex-col gap-4 mt-4">
+        {innovativePlan.map((item, index) => (
+          <div
+            key={index}
+            className="rounded-lg border p-6 backdrop-blur-lg"
+          >
+            <h1 className="mb-4 text-xl font-bold">{item.title}</h1>
+            <p className="text-muted-foreground">{item.description}</p>
+            <p className="text-muted-foreground">{"创新点：" + item.keypoint.join(', ')}</p>
+          </div>
+        ))}
       </div>
     </div>
   )
@@ -111,6 +89,7 @@ export default LCTData
 function ResourcePattern({
   mouseX,
   mouseY,
+  isHoverd,
   ...gridProps
 }: Omit<
   React.ComponentPropsWithoutRef<typeof GridPattern>,
@@ -118,8 +97,11 @@ function ResourcePattern({
 > & {
   mouseX: MotionValue<number>
   mouseY: MotionValue<number>
+  isHoverd: boolean
 }) {
-  let maskImage = useMotionTemplate`radial-gradient(180px at ${mouseX}px ${mouseY}px, white, transparent)`
+  let _mouseX = useMotionValue(-1000)
+  let _mouseY = useMotionValue(-1000)
+  let maskImage = useMotionTemplate`radial-gradient(180px at ${isHoverd ? mouseX : _mouseX}px ${isHoverd ? mouseY : _mouseY}px, white, transparent)`
   let style = { maskImage, WebkitMaskImage: maskImage }
 
   return (
@@ -149,6 +131,52 @@ function ResourcePattern({
           {...gridProps}
         />
       </motion.div>
+    </div>
+  )
+}
+
+const LctItem = (props: LCTItem) => {
+  let mouseX = useMotionValue(0)
+  let mouseY = useMotionValue(0)
+  const [isHovered, setIsHovered] = useState(false)
+  return (
+    <div
+      onMouseEnter={(e) => {
+        setIsHovered(true)
+      }}
+      onMouseLeave={(e) => {
+        setIsHovered(false)
+      }}
+      onMouseMove={(e) => {
+        e.stopPropagation()
+        let { left, top } = e.currentTarget.getBoundingClientRect()
+        mouseX.set(e.clientX - left)
+        mouseY.set(e.clientY - top)
+      }}
+      className="group relative flex rounded-2xl bg-zinc-50 transition-shadow hover:shadow-md hover:shadow-zinc-900/5 dark:bg-white/2.5 dark:hover:shadow-black/5"
+    >
+      <ResourcePattern
+        {...{
+          y: 16,
+          squares: [
+            [0, 1],
+            [1, 3],
+          ],
+        }}
+        isHoverd={isHovered}
+        mouseX={mouseX}
+        mouseY={mouseY}
+      />
+      <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-zinc-900/7.5 group-hover:ring-zinc-900/10 dark:ring-white/10 dark:group-hover:ring-white/20" />
+      <div className="relative rounded-2xl p-4">
+        <h3 className="mt-1 text-sm font-semibold leading-7 text-zinc-900 dark:text-white">
+          <span className="absolute inset-0 rounded-2xl" />
+          {props.title}
+        </h3>
+        <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
+          {props.description}
+        </p>
+      </div>
     </div>
   )
 }
