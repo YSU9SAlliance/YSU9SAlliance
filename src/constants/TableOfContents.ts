@@ -22,14 +22,17 @@ export const navigation: NavGroup[] = [
   {
     title: '笔记整理',
     links: [
-      { title:'第一次笔记',href:'/arrangement1/'},
-      { title:'第二次笔记',href:'/arrangement2/'},
-      { title:'第三次笔记',href:'/arrangement3/'},
+      { title: '第一次笔记', href: '/arrangement1/' },
+      { title: '第二次笔记', href: '/arrangement2/' },
+      { title: '第三次笔记', href: '/arrangement3/' },
     ],
   },
   {
-    title: 'AI 使用',
-    links: [{ title: 'GPT-4 代理', href: '/common/ai/gpt4' }],
+    title: 'AI 工具',
+    links: [
+      { title: 'GPT-4 代理', href: '/common/ai/gpt4' },
+      { title: 'LCT 反向法辅助工具', href: '/common/ai/lct' },
+    ],
   },
   {
     title: 'JS / TS',

@@ -6,13 +6,9 @@ import { Layout } from '@/components/Layout'
 import '@/styles/tailwind.css'
 import { type Metadata } from 'next'
 import { type Section } from '@/components/SectionProvider'
-
-export const metadata: Metadata = {
-  title: {
-    template: `%s - GL's Blog`,
-    default: 'Protocol API Reference',
-  },
-}
+import { GptProvider } from '@/components/hooks/gpt'
+import Gpt, { GptUiProvider } from '@/components/hooks/gpt/gpt-component'
+import { ServerProviders } from './server-providers'
 
 export default async function RootLayout({
   children,
@@ -29,14 +25,19 @@ export default async function RootLayout({
   let allSections = Object.fromEntries(allSectionsEntries)
 
   return (
-    <html lang="en" className="h-full" suppressHydrationWarning>
-      <body className="flex min-h-full bg-white antialiased dark:bg-zinc-900">
-        <Providers>
-          <div className="w-full">
-            <Layout allSections={allSections}>{children}</Layout>
-          </div>
-        </Providers>
-      </body>
-    </html>
+    <ServerProviders>
+      <html lang="en" className="h-full" suppressHydrationWarning>
+        <body className="flex min-h-full bg-white antialiased dark:bg-zinc-900">
+          <Providers>
+            <GptUiProvider>
+              <Gpt />
+              <div className="w-full">
+                <Layout allSections={allSections}>{children}</Layout>
+              </div>
+            </GptUiProvider>
+          </Providers>
+        </body>
+      </html>
+    </ServerProviders>
   )
 }
