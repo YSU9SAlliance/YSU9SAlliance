@@ -8,6 +8,8 @@ export const sections = [
   { title: '输出结果', id: 'output' },
   { title: '条件语句', id: 'condition' },
   { title: '循环语句', id: 'loop' },
+  { title: '函数', id: 'function' },
+  { title: '数据结构', id: 'structure' },
 ]
 
 # JS 基础语法
@@ -156,3 +158,65 @@ export const sections = [
     </CodeGroup>
   </Col>
 </Row>
+
+---
+
+<Row>
+  <Col>
+    ## 函数 {{id: 'function'}}
+
+    JS 除了通常的函数定义与调用，还支持匿名函数，一般使用 **箭头函数** 来定义匿名函数，箭头函数支持被重新命名
+
+  </Col>
+  <Col sticky>
+    <CodeGroup title="JS 的函数定义与调用">
+    ```js
+    let a = 1
+    let b = 2
+    function add(a, b) {
+      return a + b
+    }
+    console.log(add(a, b)) // 3
+    ```
+    </CodeGroup>
+
+    <CodeGroup title="JS 中的箭头函数">
+    ```js
+    let a = 1
+    let b = 2
+    // 定义一个被命名的箭头函数
+    const add = (a, b) => a + b
+    console.log(add(a, b)) // 3
+    // 直接使用匿名函数定义减法，并当场执行
+    console.log(((a, b) => a - b)(a, b)) // -1
+    ```
+    </CodeGroup>
+
+  </Col>
+</Row>
+
+---
+
+<Row>
+  <Col>
+    ## 数据结构 {{id: 'structure'}}
+
+    JS 内置了多种数据结构，常用的有 **Object**、**Array**、**Map**、**Set** 等
+
+  </Col>
+  <Col sticky>
+    <CodeGroup title="JS 中数据结构的声明">
+    ```js
+    let obj = {
+      name: '张三',
+      age: 18
+    }
+    let arr = [1, 2, 3, 4, 5]
+    let map = new Map() // 创建一个空的字典
+    let set = new Set() // 创建一个空的集合
+    ```
+    </CodeGroup>
+  </Col>
+</Row>
+
+---

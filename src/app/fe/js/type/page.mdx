@@ -225,9 +225,20 @@ export const sections = [
 
 ## 常见问题 {{id: 'questions'}}
 
-    截止至 [ES2022](https://262.ecma-international.org/13.0/) 标准，JS 目前有 7 种原始类型：
-      <CodeGroup className="mx-20" title="JS 原始类型变量的定义">
-    ```js
-    // 定义一个 number 类型变量的方法
-    ```
-    </CodeGroup>
+
+> 既然 JS 的类型判断如此鸡肋，什么时候需要我们手写类型判断呢？ {{ className: 'lead' }}
+
+最常见的场景是手写深复制的时候，或者说需要对 Object 进行深度优先搜索的时候，至少你需要判断一个值是 Object、Array 或者其他的什么东西，你才方便遍历数据。 {{ className: 'lead' }}
+
+> 有什么终极的解决方案可以避免在 JS 中遇到类型问题吗？ {{ className: 'lead' }}
+
+有，用 TS 代替 JS，替换成本并不高。依笔者浅见，TS 改名叫做 Fuck.js 也不为过。{{ className: 'lead' }}
+
+---
+
+## 逸闻趣事 {{id: 'tales'}}
+
+- JS 里面的 NaN 是一个数字，typeof NaN 的结果是 number，同时 NaN 也是 JS 中唯一一个自身不等于自身的值
+- null 在 JS 中的类型是 object，这实际上是一个历史遗留的错误。开发者最初打算将其类型设置为 null，但错误地将它设置为 object，并且为了向后兼容，这个错误被保留下来了
+- `0 <= null` 的结果为 true，别问我为什么
+- JS 中如果通过 new 关键字生成一个 Number 的包装类实例，其类行为 Number 而非 number，本质上它是个对象，但这种包装类对象并不影响其参与运算

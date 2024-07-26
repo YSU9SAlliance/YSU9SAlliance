@@ -4,36 +4,52 @@ export const metadata = {
 }
 
 export const sections = [
-  { title: '声明变量', id: 'declare' },
-  { title: '输出结果', id: 'output' },
-  { title: '条件语句', id: 'condition' },
-  { title: '循环语句', id: 'loop' },
+  { title: 'Object 对象', id: 'object' },
+  { title: 'Array 数组', id: 'array' },
+  { title: 'Set 集合', id: 'set' },
+  { title: 'Map 映射', id: 'map' },
 ]
 
-# JS 基础语法
+# JS 数据结构
 
-简单捋一捋 JS 的基础语法。{{ className: 'lead' }}
+来看看 JS 数据结构相关的特性 {{ className: 'lead' }}
 
 ---
 
 <Row>
   <Col>
-    ## 声明变量 {{id: 'declare'}}
+    ## Object 对象 {{id: 'object'}}
 
-    使用关键字 `let` 声明变量，使用关键字 `function` 声明函数。在 JS 里，函数也是一种变量。
+    一种存储键值对的数据结构，有以下特点：
+    - 键通常是 **string** 或 **symbol** 类型，值可以是任意类型
+    - 相同的键，后者的值会覆盖前者的值
+    - **string** 与 **symbol** 之外的其他类型的键，会被转化为 **string** 类型
+    - 可以通过 `.` 或 `[]` 访问对象的任意键
+    - 对象的键实际上无需遵守标识符命名规则，只要是字符串都可以，例如空格字符
+    - 底层使用哈希表实现，查找、插入、删除的时间复杂度都是 O(1)
 
   </Col>
+
   <Col sticky>
-    <CodeGroup title="JS 声明变量">
+    <CodeGroup title="Object 的使用">
     ```js
-    // 声明两个变量，JS 句尾绝大多数情况可以不加分号
-    let a = 1
-    let b = 2
-    // 声明一个接受两个变量，返回其相加结果的函数 add
-    function add(a, b) {
-      return a + b
+    let obj = {
+      a: 1,
+      b: 2,
+      c: 3,
+      1: "a",
+      "1": "b",
+      " ": "c",
     }
-    console.log(add(1, 2)) // 3
+    console.log(obj.a) // 1
+    // 中括号也可以访问任意属性
+    console.log(obj['b']) // 2 
+    // 数字索引转化为字符串后，两个 "1" 后者覆盖前者
+    console.log(obj[1]) // "b" 
+    // 空格字符也可以作为键
+    console.log(obj[" "]) // "c"
+    // 中括号比点号更万用
+    console["log"](obj["a"]) // 1
     ```
     </CodeGroup>
   </Col>
@@ -43,16 +59,47 @@ export const sections = [
 
 <Row>
   <Col>
-    ## 输出结果 {{id: 'output'}}
+    ## Array 数组 {{id: 'array'}}
 
-    使用函数 `console.log` 输出结果。
+    和大多数语言一样，用于存储一组有序元素的数据结构，有以下特点：
+    - 数组继承于 Object，所以数组也可以存键值对，只不过一般不这么用
+    - 数组中的元素，可以是任意类型，且可以类型互不相同
+    - 数组可以用 push、pop、shift、unshift 等方法进行增删
+    - 数组可以用 for of、forEach 等方法进行遍历
+    - 数组有一个叫做 length 的属性，会随着数组长度动态变化
+    - 数组有一些高级方法，比如说 map、filter、reduce 等，可以快速对数组进行复杂的处理
 
   </Col>
   <Col sticky>
-    <CodeGroup title="console.log 的使用">
+    <CodeGroup title="Array 的使用">
     ```js
-    let a = 1
-    console.log(a) // 1
+    const arr = [1, 2, 3, 4, 5]
+    console.log(arr.length) // 5
+    // push 方法会在数组末尾添加一个元素，返回数组长度
+    arr.push(6)
+    console.log(arr.length) // 6
+    // pop 方法会删除数组末尾的元素，返回删除的元素
+    arr.pop()
+    console.log(arr.length) // 5
+    // 使用 forEach 遍历数组
+    arr.forEach(item => console.log(item)) // 1 2 3 4 5
+    ```
+    </CodeGroup>
+
+    <CodeGroup title="Array 的高级方法">
+    ```js
+    const arr = [1, 2, 3, 4, 5]
+    // map 方法会返回一个新数组，
+    // 新数组的每个元素是原数组每个元素经过回调函数处理后的结果
+    console.log(arr.map(item => item * 2)) // [2, 4, 6, 8, 10]
+
+    // filter 方法会返回一个新数组
+    // 新数组的每个元素是原数组中满足回调函数条件的元素
+    console.log(arr.filter(item => item > 3)) // [4, 5]
+
+    // reduce 方法会返回一个值，
+    // 这个值是原数组中所有元素经过回调函数处理后的结果
+    console.log(arr.reduce((prev, item) => prev + item)) // 15
     ```
     </CodeGroup>
   </Col>
