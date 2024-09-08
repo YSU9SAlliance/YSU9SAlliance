@@ -1,0 +1,35 @@
+name: Deploy Next.js to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # 监听 main 分支上的推送
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'  # 根据项目所需的 Node.js 版本调整
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Next.js site
+        run: npm run build
+
+      - name: Export static HTML files
+        run: npm run export
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out  # Next.js 默认导出的静态文件目录
+          force_orphan: true  # 强制推送一个孤立分支

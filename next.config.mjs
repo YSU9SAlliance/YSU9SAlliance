@@ -19,6 +19,7 @@ const nextConfig = {
   experimental: {
     serverActions: true,
   },
+  output: 'export',
 }
 
 export default withSearch(withMDX(nextConfig))
