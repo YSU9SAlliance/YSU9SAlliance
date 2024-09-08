@@ -19,7 +19,7 @@ jobs:
           node-version: '16'  # 根据项目所需的 Node.js 版本调整
 
       - name: Install dependencies
-        run: npm install
+        run: npm install --legacy-peer-deps
 
       - name: Build Next.js site
         run: npm run build
