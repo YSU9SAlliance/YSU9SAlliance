@@ -16,7 +16,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16'  # 根据项目所需的 Node.js 版本调整
+          node-version: '21'  # 根据项目所需的 Node.js 版本调整
 
       - name: Install dependencies
         run: npm i yarn -g; yarn install; npm install --legacy-peer-deps
